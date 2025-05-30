@@ -25,7 +25,7 @@ let users = [
 // GET request: Retrieve all users
 router.get("/",(req,res)=>{
   // Copy the code here
-  res.send(users);
+  res.send(JSON.stringify({users}, null, 4));
   // res.send("Yet to be implemented")//This line is to be replaced with actual return value
 });
 
