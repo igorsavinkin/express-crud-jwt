@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-
 let users = [
     {
         firstName: "John",
-        lastName: "wick",
+        lastName: "Wick",
         email:"johnwick@gamil.com",
         DOB:"22-01-1990",
     },
@@ -26,26 +25,42 @@ let users = [
 // GET request: Retrieve all users
 router.get("/",(req,res)=>{
   // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+  res.send(users);
+  // res.send("Yet to be implemented")//This line is to be replaced with actual return value
 });
 
 // GET by specific ID request: Retrieve a single user with email ID
 router.get("/:email",(req,res)=>{
   // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+    res.send(users.filter( e => e.email == req.params.email));
+
+  //res.send("Yet to be implemented")//This line is to be replaced with actual return value
 });
 
 
 // POST request: Create a new user
 router.post("/",(req,res)=>{
   // Copy the code here
-  res.send("Yet to be implemented")//This line is to be replaced with actual return value
+  if (req.query){
+     users.push({
+        "firstName":req.query.firstName,
+        "lastName":req.query.lastName,
+        "email":req.query.email,
+        "DOB":req.query.DOB
+    });
+    res.send("New user "+req.query.firstName+" has been added to the set of them.");
+;  } else {
+    res.send("Something went wrong. Please check URL query string.");
+}
+  //res.send(req.query.firstName + " " + req.query.email);
+  //res.send("Yet to be implemented")//This line is to be replaced with actual return value
 });
 
 
 // PUT request: Update the details of a user by email ID
 router.put("/:email", (req, res) => {
   // Copy the code here
+  
   res.send("Yet to be implemented")//This line is to be replaced with actual return value
 });
 
