@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 const app = express();
 
 
-// The advantages of token based authentication include scalability, flexibility, and security. 
+// The advantages of token based authentication include 
+ // ** scalability
+ // ** flexibility
+ // ** security. 
 
 // create application/json parser
 var jsonParser = bodyParser.json()
@@ -24,13 +27,11 @@ app.post('/login', urlencodedParser, (req, res) => {
 	if (username === 'Igor' && password === 'password') {
 		// Generate JWT with username payload
 		const token = jwt.sign({ "username":username, "test":"1234" }, secretKey, { expiresIn: '1h' });
-		//res.json({ token }); 
 		
 		// Put token into "cookie" header
 		res.cookie('token', token, { httpOnly: true }); 
 		res.send('You are logged in. <form method="get" action="dashboard" >\
-		<!--input type="hidden" name="token" value="" /-->\
-		<input value="to Dashboard" type="submit"></form>'); 
+		<br /><input value="to Dashboard" type="submit"></form>'); 
 	} else {
 		res.send('Invalid credentials');
 	}
@@ -39,8 +40,8 @@ app.post('/login', urlencodedParser, (req, res) => {
 // GET endpoint to access protected resource (dashboard)
 app.get('/dashboard', (req, res) => {
   // Get token from Authorization header 
-  console.log(req.headers);
-  console.log("Cookies: " + req.cookies);
+  //console.log(req.headers);
+  //console.log("Cookies: " + req.cookies);
   const token = req.headers.cookie.split("token=")[1]; 
   if (token) {
     // Verify JWT token
