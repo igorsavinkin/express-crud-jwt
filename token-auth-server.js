@@ -50,7 +50,7 @@ app.get('/dashboard', (req, res) => {
         res.send('Invalid token');
       } else {
         // Token is valid, send welcome message with username
-        res.send(`Welcome "${decoded.username}" ; some service info: ${decoded.test}`);
+        res.send(`Welcome "${decoded.username}" <hr/><br /> some service info: ${decoded.test}`);
       }
     });
   } else {
